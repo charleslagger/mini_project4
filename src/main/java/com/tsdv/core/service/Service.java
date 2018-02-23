@@ -76,6 +76,7 @@ public class Service {
                 createMenu();
                 startTravel(device);
 
+                notifyInFoWhenInDest(device);
                 endTravel();
                 break;
             case Constant.NO:
@@ -88,8 +89,12 @@ public class Service {
         }
     }
 
+    private void notifyInFoWhenInDest(Device device) {
+        System.out.println("\nCongratulation. Your position now is destination: " + locB);
+    }
+
     private void endTravel() {
-        System.out.println("See you again");
+        System.out.println("See you again!");
     }
 
     private void handleMenu(Device device) {
