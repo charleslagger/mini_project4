@@ -1,4 +1,4 @@
-package com.tsdv.core;
+package com.tsdv.core.component;
 
 public class Location {
     private String name;

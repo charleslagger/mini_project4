@@ -1,4 +1,4 @@
-package com.tsdv.core;
+package com.tsdv.core.component;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -49,13 +49,12 @@ public class Device {
         return location;
     }
 
-    public List<Double> distanceLocationList(Location dest, Location currentPosition){
+    public List<Double> distanceLocationList(Location initPosition, Location dest){
         Utilities utilities = new Utilities();
         List<Double> distanceLocationList = new LinkedList<>();
 
-        distanceLocationList.add(utilities.distanceBetween(this.location, selectLocation(dest)));
-        distanceLocationList.add(utilities.distanceBetween(this.location, selectLocation(currentPosition)));
-        distanceLocationList.add(utilities.distanceBetween(currentPosition, selectLocation(dest)));
+        distanceLocationList.add(utilities.distanceBetween(this.location, initPosition));
+        distanceLocationList.add(utilities.distanceBetween(this.location, dest));
 
         return distanceLocationList;
     }
@@ -64,7 +63,7 @@ public class Device {
     public String toString() {
         return "Device{" +
                 "location=" + location +
-                ", speed=" + speed +
+                ", speed=" + speed + "m/s" +
                 '}';
     }
 }
