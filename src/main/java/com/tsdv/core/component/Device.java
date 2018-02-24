@@ -16,7 +16,7 @@ public class Device {
     }
 
     //add new attribute
-    private static double speed;
+    private double speed;
 
     public Location getLocation() {
         return location;
@@ -31,7 +31,7 @@ public class Device {
     }
 
     public void setSpeed(double speed) {
-        Device.speed = speed;
+        this.speed = speed;
     }
 
     public void updataLocation(Location dest, double lengthRoad){
