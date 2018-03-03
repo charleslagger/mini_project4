@@ -3,33 +3,43 @@ package com.tsdv.miniproject4;
 public class BST {
     private BSTNode root;
 
-    public void insert(Item item) {
-        if (item.getKey() == null) throw new IllegalArgumentException("calls put() with a null key");
-        if (item.getStaffInfo() == null) {
-            delete(item.getKey());
+    public void insert(Item I) {
+        if (I.getKey() == null) throw new IllegalArgumentException("calls insert() with a null key");
+        if (I.getValue() == null) {
+            delete(I.getKey());
             return;
         }
-        root = put(root, item);
-    }
-
-    private BSTNode put(BSTNode x, Item item) {
-        if (x == null) return new BSTNode(item, 1);
-        int cmp = item.getKey().compareTo(x.getItem().getKey());
-        if (cmp < 0) x.setLeftChild(put(x.getLeftChild(), item));
-        else if (cmp > 0) x.setRightChild(put(x.getRightChild(), item));
-        else x.getItem().setStaffInfo(item.getStaffInfo());
-        x.setSize(1 + size(x.getLeftChild()) + size(x.getRightChild()));
-        return x;
-    }
-
-    private int size(BSTNode x) {
-        if (x == null) return 0;
-        else return x.getSize();
+        root = insert(root, I);
     }
 
     public void delete(String key) {
         if (key == null) throw new IllegalArgumentException("calls delete() with a null key");
         root = delete(root, key);
+    }
+
+    public Item find(String k) {
+        if (k == null) {
+            throw new IllegalArgumentException("calls find() with a null key");
+        }
+
+        return find(root, k);
+    }
+
+    private Item find(BSTNode x, String key) {
+        if (x == null) return null;
+        int cmp = key.compareTo(x.getItem().getKey());
+        if (cmp < 0) return find(x.getLeftChild(), key);
+        else if (cmp > 0) return find(x.getRightChild(), key);
+        else return x.getItem();
+    }
+
+    private BSTNode insert(BSTNode r, Item item) {
+        if (r == null) return new BSTNode(item, 1);
+        int cmp = item.getKey().compareTo(r.getItem().getKey());
+        if (cmp < 0) r.setLeftChild(insert(r.getLeftChild(), item));
+        else if (cmp > 0) r.setRightChild(insert(r.getRightChild(), item));
+        else r.getItem().setValue(item.getValue());
+        return r;
     }
 
     private BSTNode delete(BSTNode x, String key) {
@@ -46,42 +56,18 @@ public class BST {
             x.setRightChild(deleteMin(t.getRightChild()));
             x.setLeftChild(t.getLeftChild());
         }
-        x.setSize(size(x.getLeftChild()) + size(x.getRightChild()) + 1);
+
         return x;
     }
 
-    private BSTNode min(BSTNode x) {
-        if (x.getLeftChild() == null) return x;
-        else return min(x.getLeftChild());
+    private BSTNode min(BSTNode r) {
+        if (r.getLeftChild() == null) return r;
+        else return min(r.getLeftChild());
     }
 
-    private BSTNode deleteMin(BSTNode x) {
-        if (x == null) return x.getRightChild();
-        x.setLeftChild(deleteMin(x.getLeftChild()));
-        x.setSize(size(x.getLeftChild()) + size(x.getRightChild()) + 1);
-        return x;
-    }
-
-
-    public Item find(String key) {
-
-        if (key == null) {
-            return null;
-        }
-
-        return getItemByKey(key);
-    }
-
-    private Item getItemByKey(String key) {
-        return search(root, key);
-    }
-
-    private Item search(BSTNode x, String key) {
-        if (key == null) throw new IllegalArgumentException("calls get() with a null key");
-        if (x == null) return null;
-        int cmp = key.compareTo(x.getItem().getKey());
-        if (cmp < 0) return search(x.getLeftChild(), key);
-        else if (cmp > 0) return search(x.getRightChild(), key);
-        else return x.getItem();
+    private BSTNode deleteMin(BSTNode r) {
+        if (r.getLeftChild() == null) return r.getRightChild();
+        r.setLeftChild(deleteMin(r.getLeftChild()));
+        return r;
     }
 }

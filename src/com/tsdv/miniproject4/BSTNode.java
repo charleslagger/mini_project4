@@ -1,25 +1,18 @@
 package com.tsdv.miniproject4;
 
 public class BSTNode {
-    private Item item;
+    private Item data;
     private BSTNode leftChild;
     private BSTNode rightChild;
 
-    private int size; //number of nodes in sub trees
-
-    public BSTNode(Item item, int size) {
-        this.item = item;
+    public BSTNode(Item data, int size) {
+        this.data = data;
         this.leftChild = null;
         this.rightChild = null;
-        this.size = size;
     }
 
     public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
+        return data;
     }
 
     public BSTNode getLeftChild() {
@@ -36,13 +29,5 @@ public class BSTNode {
 
     public void setRightChild(BSTNode rightChild) {
         this.rightChild = rightChild;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 }

@@ -9,17 +9,17 @@ public class Dictionary {
         this.bsts = new BST[size];
     }
 
-    public Item find(String key){
-        int index = hash(key);
+    public Item find(String k){
+        int index = hash(k);
 
         if(bsts[index] == null){
             return null;
         }
 
-        return bsts[index].find(key);
+        return bsts[index].find(k);
     }
 
-    public void insert(String key, StaffInfo value){
+    public void insert(String key, String value){
         int index = hash(key);
 
         if(bsts[index] == null){

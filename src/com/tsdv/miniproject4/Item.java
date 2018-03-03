@@ -2,11 +2,11 @@ package com.tsdv.miniproject4;
 
 public class Item {
     private String key;
-    private StaffInfo staffInfo;
+    private String value;
 
-    public Item(String key, StaffInfo staffInfo) {
+    public Item(String key, String value) {
         this.key = key;
-        this.staffInfo = staffInfo;
+        this.value = value;
     }
 
     public String getKey() {
@@ -17,11 +17,11 @@ public class Item {
         this.key = key;
     }
 
-    public StaffInfo getStaffInfo() {
-        return staffInfo;
+    public String getValue() {
+        return value;
     }
 
-    public void setStaffInfo(StaffInfo staffInfo) {
-        this.staffInfo = staffInfo;
+    public void setValue(String value) {
+        this.value = value;
     }
 }
